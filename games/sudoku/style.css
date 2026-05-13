@@ -129,7 +129,7 @@ body::before {
 /* GRID */
 .grid-wrapper {
   /* strictly square: size driven by the smaller of viewport width and available height */
-  width: min(100%, calc(100dvh - 220px));
+  width: min(100%, calc(100dvh - 260px));
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
   align-self: center;
@@ -173,14 +173,29 @@ body::before {
 .btn-resume:hover { background: var(--blue-soft); }
 
 .number-picker {
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   width: 100%;
   opacity: 0; pointer-events: none; transition: opacity 0.2s;
   flex-shrink: 0;
 }
 .number-picker.visible { opacity: 1; pointer-events: auto; }
+
+.picker-digits {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.picker-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+}
+
 .num-btn {
   aspect-ratio: 1;
   width: 100%;
@@ -188,18 +203,32 @@ body::before {
   border: 1.5px solid rgba(244,114,182,0.2);
   background: var(--number-bg); color: var(--text);
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(0.8rem, 3.5vw, 1.1rem);
+  font-size: clamp(0.9rem, 3.8vw, 1.2rem);
   font-weight: 600; cursor: pointer; transition: all 0.15s;
   display: flex; align-items: center; justify-content: center;
 }
-.num-btn:hover { background: var(--number-hover); border-color: var(--pink); transform: scale(1.06); }
+.num-btn:hover { background: var(--number-hover); border-color: var(--pink); transform: scale(1.04); }
 .num-btn:active { transform: scale(0.95); }
+
+/* tool buttons (pencil/erase) in the second row are wider, not square */
+.picker-tools .num-btn {
+  aspect-ratio: unset;
+  padding: 10px 0;
+  flex-direction: row;
+  gap: 7px;
+}
 .num-btn.tool-btn { border-color: rgba(255,255,255,0.08); }
-.num-btn.tool-btn .btn-svg { width: 52%; height: 52%; opacity: 0.5; }
-.num-btn.tool-btn:hover { border-color: var(--blue); }
+.num-btn.tool-btn .btn-svg { width: 16px; height: 16px; opacity: 0.55; flex-shrink: 0; }
+.num-btn.tool-btn:hover { border-color: var(--blue); background: var(--blue-soft); }
 .num-btn.tool-btn:hover .btn-svg { opacity: 1; }
+.tool-label {
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem;
+  font-weight: 500; letter-spacing: 0.04em; color: var(--text-dim);
+}
+.num-btn.tool-btn:hover .tool-label { color: var(--text); }
 .num-btn.pencil-active { border-color: var(--blue) !important; background: var(--blue-soft) !important; }
 .num-btn.pencil-active .btn-svg { opacity: 1 !important; filter: invert(60%) sepia(80%) saturate(400%) hue-rotate(190deg) brightness(110%); }
+.num-btn.pencil-active .tool-label { color: var(--blue); }
 
 /* CANDIDATE GRID inside a cell */
 .cell.has-candidates { padding: 1px; }
@@ -412,7 +441,7 @@ body::before {
   .timer-group { gap: 6px; }
   .timer { font-size: 1rem; min-width: 52px; }
   .top-bar h2 { font-size: 1.3rem; }
-  .grid-wrapper { width: min(100%, calc(100dvh - 260px)); }
+  .grid-wrapper { width: min(100%, calc(100dvh - 300px)); }
 }
 
 /* COIN EARNED in modal */

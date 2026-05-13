@@ -241,7 +241,7 @@ function resumeGame() {
   clueMap = saved.clueMap;
   candidateGrid = saved.candidates;
   seconds = saved.seconds;
-  revealed = false; undoStack = []; errorCells = new Set(); selectedCell = null; pencilMode = false;
+  revealed = false; paused = false; undoStack = []; errorCells = new Set(); selectedCell = null; pencilMode = false;
 
   const tag = document.getElementById('diffTag');
   tag.textContent = DIFFICULTIES[currentDifficulty].label;
@@ -250,6 +250,7 @@ function resumeGame() {
   document.getElementById('revealedBar').classList.remove('active');
   updateUndoBtn(); buildGrid();
   showScreen('game');
+  clearInterval(timerInterval);
   updateTimer();
   timerInterval = setInterval(()=>{ if(!paused){ seconds++; updateTimer(); }}, 1000);
   updateCoinUI();
