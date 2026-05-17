@@ -539,6 +539,7 @@ function checkSolution(){
   }
   if(hasErr) return;
   clearInterval(timerInterval);
+  revealed = true;
   clearSavedGame();
   showModal('success');
 }
@@ -554,7 +555,7 @@ function showModal(type){
     icon.textContent='✦'; icon.style.color='var(--pink)'; title.textContent='Brilliant!';
     text.textContent=`Solved in ${fmt(seconds)}.`;
     bestEl.style.display='block';
-    bestEl.innerHTML=`<div class="coin-reward-row"><span class="coin-earned-label">+<span id="coinCountUp">0</span><img src="icons/coin.svg" class="coin-icon-img" alt="coins" style="vertical-align:middle;margin-left:3px;"> earned</span></div>${isNew?'<div class="new-best-line">★ New best time!</div>':''}`;
+    bestEl.innerHTML=`<div class="coin-reward-row"><span class="coin-earned-label">+<span id="coinCountUp">0</span><img src="icons/coin.svg" class="coin-icon-img coin-icon-lg" alt="coins"> earned</span></div>${isNew?'<div class="new-best-line">★ New best time!</div>':''}`;
     actions.innerHTML=`<button class="btn-primary" onclick="closeModal();startGame('${currentDifficulty}')">Play Again</button><button class="btn-secondary" onclick="closeModal();doGoHome()">Home</button>`;
     let cur=0;
     const steps=20,duration=700,inc=reward/steps;

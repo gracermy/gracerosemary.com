@@ -125,6 +125,7 @@ body::before {
 
 /* coin icon img used in badges */
 .coin-icon-img { width: 14px; height: 14px; opacity: 0.9; pointer-events: none; filter: invert(85%) sepia(50%) saturate(400%) hue-rotate(5deg) brightness(105%); }
+.coin-icon-lg { width: 22px; height: 22px; vertical-align: middle; margin-left: 2px; }
 
 /* GRID */
 .grid-wrapper {
@@ -433,6 +434,8 @@ body::before {
 }
 .coin-display.compact .coin-count { font-size: 0.72rem; }
 .coin-display.compact .coin-icon-img { width: 12px; height: 12px; }
+.coin-display:not(.compact) .coin-icon-img { width: 20px; height: 20px; }
+.coin-display:not(.compact) .coin-count { font-size: 0.95rem; }
 
 /* Desktop: give the game screen more padding */
 @media (min-width: 600px) {
